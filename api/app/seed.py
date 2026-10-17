@@ -25,27 +25,66 @@ def cargar_datos():
     db = SessionLocal()
 
     try:
-        # TODO 1: Abre RUTA_PRODUCTOS con encoding="utf-8" y usa json.load()
-        #         para obtener la lista de productos.
-        # datos = ...
+        # TODO 1: Leer los productos desde el archivo JSON.
+        with open(RUTA_PRODUCTOS, encoding="utf-8") as archivo:
+            datos = json.load(archivo)
 
-        # TODO 2: Por cada item en 'datos':
-        #   a) Busca la categoría por nombre:
-        #        categoria = db.query(Categoria).filter_by(
-        #            nombre=item["categoria"]).first()
-        #   b) Si no existe, créala, agrégala con db.add(categoria)
-        #      y usa db.flush() para obtener su id sin hacer commit todavía.
-        #   c) Si ya existe un producto con ese sku
-        #      (db.query(Producto).filter_by(sku=item["sku"]).first()),
-        #      sáltalo con 'continue' para no duplicar.
-        #   d) Crea el Producto con los campos del JSON y
-        #      categoria_id=categoria.id, y agrégalo con db.add(producto).
+        # Contar cuántos productos nuevos se agregan.
+        cargados = 0
 
-        # TODO 3: Confirma todo con db.commit()
+        # TODO 2: Recorrer los productos del archivo JSON.
+        for item in datos:
 
-        # TODO 4: Imprime cuántos productos se cargaron, por ejemplo:
-        #         print(f"Se cargaron {len(datos)} productos.")
-        pass
+            # Buscar la categoría por su nombre.
+            categoria = (
+                db.query(Categoria)
+                .filter_by(nombre=item["categoria"])
+                .first()
+            )
+
+            # Crear la categoría si todavía no existe.
+            if categoria is None:
+                categoria = Categoria(nombre=item["categoria"])
+                db.add(categoria)
+
+                # Obtener el ID de la categoría sin confirmar la transacción.
+                db.flush()
+
+            # Evitar insertar productos duplicados.
+            producto_existente = (
+                db.query(Producto)
+                .filter_by(sku=item["sku"])
+                .first()
+            )
+
+            if producto_existente is not None:
+                continue
+
+            # Crear el producto con los datos del JSON.
+            producto = Producto(
+                sku=item["sku"],
+                marca=item["marca"],
+                nombre=item["nombre"],
+                precio=item["precio"],
+                foto=item.get("foto"),
+                stock=item["stock"],
+                activo=item["activo"],
+                categoria_id=categoria.id
+            )
+
+            db.add(producto)
+            cargados += 1
+
+        # TODO 3: Guardar los cambios en la base de datos.
+        db.commit()
+
+        # TODO 4: Mostrar la cantidad de productos nuevos.
+        print(f"Se cargaron {cargados} productos nuevos.")
+
+    except Exception:
+        db.rollback()
+        raise
+
     finally:
         db.close()
 

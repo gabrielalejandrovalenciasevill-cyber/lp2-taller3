@@ -3,7 +3,6 @@ Punto de entrada de la API (FastAPI).
 
 Se ejecuta con:
     uvicorn app.main:app --host 0.0.0.0 --port 8000
-(esto ya lo hace el CMD del Dockerfile).
 """
 
 from fastapi import FastAPI
@@ -11,10 +10,8 @@ from fastapi import FastAPI
 from .database import Base, engine
 from .routers import categorias, productos
 
-# TODO 1: Crea las tablas en la base de datos si todavía no existen.
-#         Pista: Base.metadata.create_all(bind=engine)
-#         (Esto reemplaza al "flask init-db" del Taller 2; aquí lo hacemos
-#         directamente al arrancar la aplicación.)
+# Crear las tablas si todavía no existen.
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Tienda Virtual API",
@@ -22,12 +19,12 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# TODO 2: Registra los routers de productos y categorías con
-#         app.include_router(productos.router)
-#         app.include_router(categorias.router)
+# Registrar las rutas de productos y categorías.
+app.include_router(productos.router)
+app.include_router(categorias.router)
 
 
 @app.get("/")
 def raiz():
-    """Endpoint de salud, útil para confirmar que el servicio está vivo."""
-    return {"mensaje": "API de la Tienda Virtual funcionando"}
+    """Endpoint para comprobar que la API está funcionando."""
+    return {"mensaje": "API de la Tienda Virtual funciona "} 

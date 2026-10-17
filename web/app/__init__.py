@@ -1,9 +1,7 @@
 """
 Application factory del frontend.
 
-CAMBIO CLAVE respecto al Taller 2: este servicio ya NO se conecta a
-ninguna base de datos. Su única fuente de datos es la API (servicio
-'api'), a través de peticiones HTTP.
+Este servicio obtiene los datos de la tienda a través de la API.
 """
 
 from flask import Flask
@@ -14,10 +12,11 @@ from config import Config
 def create_app(config_class=Config):
     app = Flask(__name__)
 
-    # TODO 1: Carga la configuración: app.config.from_object(config_class)
+    # Cargar la configuración de la aplicación.
+    app.config.from_object(config_class)
 
-    # TODO 2: Importa el blueprint 'main' desde .routes y regístralo:
-    #         from .routes import main
-    #         app.register_blueprint(main)
+    # Importar y registrar las rutas de la tienda.
+    from .routes import main
+    app.register_blueprint(main)
 
     return app
