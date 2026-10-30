@@ -7,7 +7,7 @@
 
 ## Autor
 
-- [@estudiante](https://www.github.com/estudiante)
+- [@gabriel alejandro valencia sevillano](https://www.github.com/estudiante)
 
 ## Descripción del Proyecto
 
