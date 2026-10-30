@@ -10,14 +10,37 @@
 - [@estudiante](https://www.github.com/estudiante)
 
 ## Descripción del Proyecto
+Taller 3 — Tienda Virtual
+Aplicación web de una tienda virtual desarrollada con Flask, FastAPI, SQLAlchemy y PostgreSQL, utilizando Docker Compose para ejecutar sus servicios.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut quam dolor. Quisque elementum est sed massa gravida convallis. Donec volutpat turpis eget lectus feugiat congue. Morbi rutrum auctor eleifend. Etiam iaculis libero tellus, vel aliquet erat tempor sed. Duis efficitur quam vel sapien luctus, sed semper lacus mollis. Suspendisse non nunc eleifend, aliquet elit eget, condimentum augue.
+Descripción
+El proyecto implementa una arquitectura con dos aplicaciones:
 
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus vel nibh fringilla, porta elit vel, consequat libero. Nulla et libero ac nulla ultricies sollicitudin. Sed viverra non nulla id convallis. Morbi vel varius lacus, in maximus nunc. Praesent sed semper diam. Pellentesque vehicula nulla augue, ut porta dolor consequat at.
+Frontend: aplicación web desarrollada con Flask que muestra el catálogo de productos y sus categorías.
+Backend: API REST desarrollada con FastAPI que consulta la información almacenada en PostgreSQL.
+Base de datos: PostgreSQL, utilizada para almacenar los productos y las categorías.
+Contenedores: Docker Compose permite ejecutar los servicios de forma conjunta.
+Funcionalidades
+Visualización del catálogo de productos.
+Filtrado de productos por categoría.
+Consulta de los detalles de un producto mediante su SKU.
+Listado de categorías disponibles.
+Visualización del precio, la marca, el stock y la disponibilidad.
+Comunicación entre el frontend y la API REST.
+Tecnologías utilizadas
+Python
+Flask
+FastAPI
+SQLAlchemy
+PostgreSQL
+Docker y Docker Compose
+HTML y CSS
+Git y GitHub
+Requisitos
+Para ejecutar el proyecto se necesita:
 
-## Proceso
-
-Morbi quam lectus, tempus sit amet mi non, facilisis dignissim erat. Aenean tortor libero, rhoncus eu eleifend ut, volutpat id nisi. Ut porta eros at ante rutrum pharetra. Integer nec nulla dictum, vestibulum ligula id, hendrerit ex. Morbi eget tortor metus.
-
-[GUIA.md](docs/GUIA.md)
+Docker Desktop instalado y funcionando.
+Integración de Docker Desktop con WSL 2, si se utiliza Ubuntu en Windows.
+Git.
+GUIA.md
 
