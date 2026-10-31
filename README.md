@@ -11,13 +11,62 @@
 
 ## Descripción del Proyecto
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut quam dolor. Quisque elementum est sed massa gravida convallis. Donec volutpat turpis eget lectus feugiat congue. Morbi rutrum auctor eleifend. Etiam iaculis libero tellus, vel aliquet erat tempor sed. Duis efficitur quam vel sapien luctus, sed semper lacus mollis. Suspendisse non nunc eleifend, aliquet elit eget, condimentum augue.
+El proyecto consiste en desarrollar una tienda virtual de productos tecnológicos utilizando Flask para la interfaz web y FastAPI para crear una API REST. La información de los productos y las categorías se almacena en una base de datos PostgreSQL.
 
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus vel nibh fringilla, porta elit vel, consequat libero. Nulla et libero ac nulla ultricies sollicitudin. Sed viverra non nulla id convallis. Morbi vel varius lacus, in maximus nunc. Praesent sed semper diam. Pellentesque vehicula nulla augue, ut porta dolor consequat at.
+La aplicación permite visualizar un catálogo de productos, consultar sus detalles y acceder a la información mediante endpoints de la API.
 
-## Proceso
+Tecnologías utilizadas
+Python: lenguaje de programación utilizado para desarrollar la aplicación.
+Flask: framework utilizado para construir la tienda virtual.
+FastAPI: framework utilizado para desarrollar la API REST.
+PostgreSQL: sistema de gestión de bases de datos.
+Docker Compose: herramienta utilizada para ejecutar los servicios del proyecto.
+HTML y CSS: tecnologías utilizadas para construir y dar estilo a las páginas web.
+Funcionalidades
+Visualización del catálogo de productos.
+Consulta de los detalles de cada producto.
+Visualización de fotografías, marcas, SKU, precios y stock.
+Consulta de productos mediante la API REST.
+Filtrado de productos por categoría.
+Consulta de categorías.
+Almacenamiento de la información en PostgreSQL.
+Endpoints de la API
+Método	Endpoint	Descripción
+GET	/	Consulta la ruta principal de la API.
+GET	/productos/	Lista los productos y permite filtrarlos por categoría.
+GET	/productos/{sku}	Consulta un producto por su SKU.
+GET	/categorias/	Lista las categorías disponibles.
+Instalación y ejecución
+Requisitos
+Python.
+Docker y Docker Compose.
+Git.
+Pasos
+Clonar el repositorio:
 
-Morbi quam lectus, tempus sit amet mi non, facilisis dignissim erat. Aenean tortor libero, rhoncus eu eleifend ut, volutpat id nisi. Ut porta eros at ante rutrum pharetra. Integer nec nulla dictum, vestibulum ligula id, hendrerit ex. Morbi eget tortor metus.
+git clone https://github.com/clubdecomputacion/lp2-taller3.git
+Entrar a la carpeta del proyecto:
 
-[GUIA.md](docs/GUIA.md)
+cd lp2-taller3
+Construir las imágenes e iniciar los servicios:
 
+docker compose up -d --build
+Comprobar el estado de los servicios:
+
+docker compose ps
+Acceso a la aplicación
+Cuando los servicios estén ejecutándose localmente, se puede acceder a:
+
+Tienda virtual: http://localhost:5000/
+Documentación de la API: http://localhost:8000/docs
+Productos en formato JSON: http://localhost:8000/productos/
+Categorías en formato JSON: http://localhost:8000/categorias/
+Documentación adicional
+Consulta la guía del proyecto para obtener información complementaria sobre su desarrollo y funcionamiento:
+
+Ver GUIA.md
+
+Detener los servicios
+Para detener los contenedores del proyecto, ejecuta:
+
+docker compose down
